@@ -7,3 +7,23 @@
 [Apple, Apple, Bee, Bee, Bee, Bee, Car, Dog, Farm, Golf, Golf, Zoo, Zoo, Zoo]
 Ваш код должен выполняться за время О (N log N) и использовать память О (N), где N - количество элементов в массиве. Вы можете предположить, что переданный массив и все строки в нем не равны нулю. Не используйте никаких других вспомогательных коллекций, кроме одного Multiset или Multimap.
 */
+
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
+import java.util.Arrays;
+public class GuavaSort {
+    public static void guavaSort(String[] array) {
+        // Используем FJC Multiset для подсчета вхождений строк
+        Multiset<String> multiset = HashMultiset.create(Arrays.asList(array));
+        int index = 0;
+        // Помещаем строки обратно в массив в отсортированном порядке
+        for (Multiset.Entry<String> entry : multiset.entrySet()) {
+            String value = entry.getElement();
+            int count = entry.getCount();
+            // Заполняем массив соответствующим числом вхождений строки
+            Arrays.fill(array, index, index + count, value);
+            // Обновляем индекс для следующей строки
+            index += count;
+        }
+    }
+}

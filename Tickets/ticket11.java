@@ -18,3 +18,24 @@ public class ListNode {
   ...
 }
 */
+
+/**
+ * Метод, который перемещает элемент списка в конец списка.
+ */
+public void firstLast() {
+    if (front == null || front.next == null) {
+        // Если список пуст или содержит только один элемент, ничего не делаем
+        return;
+    }
+    ListNode current = front;
+    ListNode previous = null;
+    // Находим последний узел
+    while (current.next != null) {
+        previous = current;
+        current = current.next;
+    }
+    // Перемещаем первый узел в конец списка
+    current.next = front;
+    front = front.next;
+    previous.next = null;
+}

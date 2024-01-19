@@ -12,3 +12,23 @@ public class LinkedIntList {
     ...
   }
 */
+
+/**
+ * Метод, который удаляет любые дубликаты из связанного списка целых чисел.
+ * Результирующий список сохраняет порядок первого вхождения каждого значения.
+ */
+public void removeDuplicates() {
+    if (front == null) {
+        // Если список пуст, ничего не делаем
+        return;
+    }
+    ListNode current = front;
+    while (current != null) {
+        // Проверяем, есть ли следующий узел и его значение совпадает с текущим
+        while (current.next != null && current.data == current.next.data) {
+            // Пропускаем все повторяющиеся узлы
+            current.next = current.next.next;
+        }
+        current = current.next;
+    }
+}

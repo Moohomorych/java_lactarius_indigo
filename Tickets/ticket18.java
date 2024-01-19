@@ -9,3 +9,30 @@ public class ArrayIntList {
   // your code goes here
 }
 */
+
+public class ArrayIntList {
+    private int[] elementData;
+    private int size;
+    public int longestSortedSequence() {
+        if (size == 0) {
+            // Если список пуст, вернуть 0
+            return 0;
+        }
+        int longestSequence = 1;  // Минимальная длина последовательности - 1
+        int currentSequence = 1;  // Текущая длина последовательности
+        // Проход по списку, начиная со второго элемента
+        for (int i = 1; i < size; i++) {
+            // Проверка, является ли текущий элемент следующим в отсортированной последовательности
+            if (elementData[i] >= elementData[i - 1]) {
+                // Увеличение длины текущей последовательности
+                currentSequence++;
+            } else {
+                // Сброс длины текущей последовательности
+                currentSequence = 1;
+            }
+            // Обновление самой длинной последовательности
+            longestSequence = Math.max(longestSequence, currentSequence);
+        }
+        return longestSequence;
+    }
+}

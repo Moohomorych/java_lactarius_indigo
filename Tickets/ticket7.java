@@ -19,3 +19,40 @@ public class ListNode {
   ...
 }
 */
+
+public class LinkedIntList {
+    private ListNode front;
+    // Другие методы класса
+    /**
+     * Метод, который эффективно удаляет из отсортированного списка целых чисел
+     * все значения, появляющиеся во втором отсортированном списке целых чисел.
+     *
+     * @param otherList Второй отсортированный список целых чисел.
+     */
+    public void removeAll(LinkedIntList otherList) {
+        ListNode current1 = front;
+        ListNode current2 = otherList.front;
+        ListNode previous = null;
+        while (current1 != null && current2 != null) {
+            if (current1.data < current2.data) {
+                previous = current1;
+                current1 = current1.next;
+            } else if (current1.data > current2.data) {
+                current2 = current2.next;
+            } else { // Если значения равны, удаляем элемент из первого списка
+                if (previous == null) {
+                    front = current1.next;
+                    current1 = front;
+                } else {
+                    previous.next = current1.next;
+                    current1 = current1.next;
+                }
+            }
+        }
+    }
+}
+public class ListNode {
+    public int data;
+    public ListNode next;
+    // Конструктор и другие методы
+}
